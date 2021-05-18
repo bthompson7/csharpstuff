@@ -8,25 +8,30 @@ namespace csharp
     {
         private string url = "https://api.genderize.io/?name=";
 
-        public HttpRequests(){
+        public HttpRequests()
+        {
 
         }
 
 
-        public void setURL(string url){
+        public void setURL(string url)
+        {
             this.url = url;
         }
-        public string getURL(){
+        public string getURL()
+        {
             return url;
         }
 
-        public void makeGetRequest(string name){
-            if(string.IsNullOrEmpty(name)){
+        public void makeGetRequest(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
                 throw new Exception("The string you enterted is null or empty, please enter a valid string and try again.");
             }
 
             string fullURL = url + name;
-            
+
             Console.WriteLine("Making API Call using the url " + fullURL);
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
@@ -35,7 +40,7 @@ namespace csharp
                 string result = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine("Result: " + result + "\nHttp Status: " + response.StatusCode);
             }
-            
+
         }
 
     }
