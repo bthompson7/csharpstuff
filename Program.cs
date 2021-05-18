@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -6,12 +7,13 @@ namespace csharp
 {
     class Program
     {
+
         static void Main(string[] args)
         {
 
-            if (args.Length == 0)
+            if (args.Length == 1)
             {
-                throw new Exception("Please enter a value");
+                throw new Exception("Please enter either http or db");
             }
 
             if (args[1] == "http")
@@ -39,7 +41,11 @@ namespace csharp
                 }
 
                 db.close();
+            }else{
+                Console.WriteLine("Not a valid argument");
             }
+
+
 
 
 
