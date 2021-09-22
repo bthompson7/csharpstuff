@@ -22,7 +22,7 @@ namespace csharp
 
             }
 
-            //connect to a mysql database
+            //connect to a mysql database and run a simple query
             else if (args[1].Equals("db"))
             {
                 DbProgram dbProgram = new DbProgram();
