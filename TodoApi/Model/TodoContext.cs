@@ -9,6 +9,6 @@ namespace TodoApi.Model
         {
         }
 
-        public DbSet<Employee> TodoItems { get; set; }
+        public DbSet<Developer> TodoItems { get; set; }
     }
 }

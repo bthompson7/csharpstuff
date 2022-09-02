@@ -22,7 +22,7 @@ namespace TodoApi.Controllers
 
         // GET: api/TodoItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<Developer>>> GetTodoItems()
         {
             return await _context.TodoItems.ToListAsync();
         }
@@ -44,7 +44,7 @@ namespace TodoApi.Controllers
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployee(long id, Employee employee)
+        public async Task<IActionResult> PutEmployee(long id, Developer employee)
         {
             if (id != employee.Id)
             {
@@ -75,12 +75,16 @@ namespace TodoApi.Controllers
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
+        public async Task<ActionResult<Developer>> PostEmployee(Developer employee)
         {
+
+
+             Console.WriteLine(employee.jobTitle);
+
             _context.TodoItems.Add(employee);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Employee), new { id = employee.Id }, employee);
+            return CreatedAtAction(nameof(Developer), new { id = employee.Id }, employee);
         }
 
         // DELETE: api/TodoItems/5
