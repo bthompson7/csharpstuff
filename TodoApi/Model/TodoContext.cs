@@ -4,11 +4,12 @@ namespace TodoApi.Model
 {
     public class TodoContext : DbContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options)
-            : base(options)
+        public TodoContext(DbContextOptions<TodoContext> options) : base(options)
         {
+
         }
 
-        public DbSet<Developer> TodoItems { get; set; }
+        public DbSet<Employee> TodoItems { get; set; }
+
     }
 }

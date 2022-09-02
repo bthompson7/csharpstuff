@@ -20,9 +20,9 @@ namespace TodoApi.Controllers
             _context = context;
         }
 
-        // GET: api/TodoItems
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Developer>>> GetTodoItems()
+        // GET: api/TodoItems/employees
+        [HttpGet("employees")]
+        public async Task<ActionResult<IEnumerable<Employee>>> GetDevelopersItems()
         {
             return await _context.TodoItems.ToListAsync();
         }
@@ -41,51 +41,26 @@ namespace TodoApi.Controllers
             return employee;
         }
 
-        // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployee(long id, Developer employee)
+    
+        // POST: developer     
+        [HttpPost("developer")]
+        public async Task<ActionResult<Developer>> PostDeveloper(Developer employee)
         {
-            if (id != employee.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(employee).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployeeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/TodoItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Developer>> PostEmployee(Developer employee)
-        {
-
-
-             Console.WriteLine(employee.jobTitle);
 
             _context.TodoItems.Add(employee);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction(nameof(Developer), new { id = employee.Id }, employee);
         }
+
+        // POST: senior developer 
+        [HttpPost("seniordeveloper")]
+        public async Task<ActionResult<SeniorDeveloper>> PostDeveloper(SeniorDeveloper employee)
+        {
+            _context.TodoItems.Add(employee);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(SeniorDeveloper), new { id = employee.Id }, employee);
+        }
+
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
